@@ -11,10 +11,14 @@ include(cmake/project.cmake)
 include(cmake/test.cmake)
 
 add_library(hdk STATIC
+	src/hdk/concepts.hpp
 	src/hdk/debug.cpp
 	src/hdk/debug.hpp
 	src/hdk/hdk.hpp
 	src/hdk/hdk.cpp
+	src/hdk/vector.cpp
+	src/hdk/vector.hpp
+	src/hdk/vector.inl
 )
 hdk_configure_common(TARGET hdk)
 target_include_directories(hdk PUBLIC "${PROJECT_SOURCE_DIR}/src")
