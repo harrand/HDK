@@ -24,5 +24,7 @@ else()
 	target_compile_definitions(hdk PUBLIC "-DHDK_DEBUG=0")
 endif()
 
+add_subdirectory(vendor)
+
 enable_testing()
 add_subdirectory(test)
