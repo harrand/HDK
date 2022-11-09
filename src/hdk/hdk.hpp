@@ -3,13 +3,14 @@
 
 namespace hdk
 {
+	void initialise();
+	void terminate();
+
 	namespace detail
 	{
 		bool is_initialised();
 	}
 
-	void initialise();
-	void terminate();
 }
 
 #endif // HDK_HPP

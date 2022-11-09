@@ -10,6 +10,8 @@ set(HDK_CXX_VERSION 20)
 include(cmake/project.cmake)
 
 add_library(hdk STATIC
+	src/hdk/debug.cpp
+	src/hdk/debug.hpp
 	src/hdk/hdk.hpp
 	src/hdk/hdk.cpp
 )

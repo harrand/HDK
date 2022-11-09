@@ -1,4 +1,7 @@
 #include "hdk/hdk.hpp"
+// temp
+//
+#include "hdk/debug.hpp"
 
 namespace hdk
 {
@@ -19,6 +22,7 @@ namespace hdk
 
 	void terminate()
 	{
+		hdk::assert(detail::init.initialised, "terminate() called but we are not initialised");
 		detail::init.initialised = false;
 	}
 
