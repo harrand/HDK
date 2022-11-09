@@ -23,5 +23,7 @@ namespace hdk
 	void error(detail::format_string fmt, Args&&... args);
 }
 
+#define hdk_legacy_assert(cond) hdk::assert(cond, "Legacy Assert Detected")
+
 #include "hdk/debug.inl"
 #endif // HDK_DEBUG_HPP
