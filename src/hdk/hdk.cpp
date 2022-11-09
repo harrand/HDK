@@ -1,6 +1,4 @@
 #include "hdk/hdk.hpp"
-// temp
-//
 #include "hdk/debug.hpp"
 
 namespace hdk
