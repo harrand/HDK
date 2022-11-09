@@ -17,6 +17,7 @@ namespace hdk
 
 	void initialise()
 	{
+		hdk::assert(!detail::init.initialised, "initialise() already initialised");
 		detail::init.initialised = true;
 	}
 
