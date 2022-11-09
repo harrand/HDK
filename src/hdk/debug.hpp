@@ -24,6 +24,8 @@ namespace hdk
 
 	template<typename... Args>
 	void error(detail::format_string fmt = "<No message>", Args&&... args);
+
+	void debug_break();
 }
 
 #define hdk_legacy_assert(cond) hdk::assert(cond, "Legacy Assert Detected")

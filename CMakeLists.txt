@@ -25,6 +25,7 @@ else()
 endif()
 
 add_subdirectory(vendor)
+target_link_libraries(hdk PRIVATE debugbreak)
 
 enable_testing()
 add_subdirectory(test)

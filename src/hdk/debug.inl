@@ -16,7 +16,7 @@ namespace hdk
 		diag_info += std::string{loc.file_name()} + ":" + std::to_string(loc.line()) + ":" + std::to_string(loc.column()) + std::string{"\n\t>\t"} + loc.function_name();
 
 		std::fprintf(stderr, "%s", diag_info.c_str());
-		std::abort();
+		debug_break();
 	}
 
 	template<typename... Args>
