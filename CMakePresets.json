@@ -9,9 +9,7 @@
 	"configurePresets":
 	[
 	{
-		"name": "ci-debug",
-		"displayName": "CI Debug",
-		"description": "A debug build. Intended to be used by CI systems.",
+		"name": "debug",
 		"binaryDir": "${sourceDir}/build/debug",
 		"cacheVariables":
 		{
@@ -20,12 +18,11 @@
 				"type": "string",
 				"value": "Debug"
 			}
-		}
+		},
+		"hidden": true
 	},
 	{
-		"name": "ci-release",
-		"displayName": "CI Release",
-		"description": "A release build. Intended to be used by CI systems.",
+		"name": "release",
 		"binaryDir": "${sourceDir}/build/release",
 		"cacheVariables":
 		{
@@ -34,7 +31,20 @@
 				"type": "string",
 				"value": "Release"
 			}
-		}
+		},
+		"hidden": true
+	},
+	{
+		"name": "ci-debug",
+		"displayName": "CI Debug",
+		"description": "A debug build. Intended to be used by CI systems.",
+		"inherits": "debug"
+	},
+	{
+		"name": "ci-release",
+		"displayName": "CI Release",
+		"description": "A release build. Intended to be used by CI systems.",
+		"inherits": "release"
 	}
 	]
 }

@@ -9,10 +9,14 @@ project(hdk
 set(HDK_CXX_VERSION 20)
 include(cmake/project.cmake)
 
-add_library(hdk
+add_library(hdk STATIC
 	src/hdk/hdk.hpp
 	src/hdk/hdk.cpp
 )
 hdk_configure_common(TARGET hdk)
 target_include_directories(hdk PUBLIC "${PROJECT_SOURCE_DIR}/src")
-message("Build Type: ${CMAKE_BUILD_TYPE}")
+if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+	target_compile_definitions(hdk PUBLIC "-DHDK_DEBUG=1")
+else()
+	target_compile_definitions(hdk PUBLIC "-DHDK_DEBUG=0")
+endif()
