@@ -28,7 +28,8 @@ function(hdk_add_executable)
 		"SOURCES"
 		${ARGN}
 	)
-	add_library(${HDK_ADD_EXECUTABLE_TARGET}
+
+	add_executable(${HDK_ADD_EXECUTABLE_TARGET}
 		${HDK_ADD_EXECUTABLE_SOURCES}
 	)
 

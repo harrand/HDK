@@ -8,6 +8,7 @@ project(hdk
 
 set(HDK_CXX_VERSION 20)
 include(cmake/project.cmake)
+include(cmake/test.cmake)
 
 add_library(hdk STATIC
 	src/hdk/debug.cpp
@@ -22,3 +23,6 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
 else()
 	target_compile_definitions(hdk PUBLIC "-DHDK_DEBUG=0")
 endif()
+
+enable_testing()
+add_subdirectory(test)
