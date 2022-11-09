@@ -12,13 +12,29 @@
 		"name": "ci-debug",
 		"displayName": "CI Debug",
 		"description": "A debug build. Intended to be used by CI systems.",
-		"binaryDir": "${sourceDir}/build/debug"
+		"binaryDir": "${sourceDir}/build/debug",
+		"cacheVariables":
+		{
+			"CMAKE_BUILD_TYPE":
+			{
+				"type": "string",
+				"value": "Debug"
+			}
+		}
 	},
 	{
 		"name": "ci-release",
 		"displayName": "CI Release",
 		"description": "A release build. Intended to be used by CI systems.",
-		"binaryDir": "${sourceDir}/build/release"
+		"binaryDir": "${sourceDir}/build/release",
+		"cacheVariables":
+		{
+			"CMAKE_BUILD_TYPE":
+			{
+				"type": "string",
+				"value": "Release"
+			}
+		}
 	}
 	]
 }
