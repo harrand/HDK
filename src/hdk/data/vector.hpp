@@ -226,5 +226,5 @@ namespace std
 	};
 }
 
-#include "hdk/vector.inl"
+#include "hdk/data/vector.inl"
 #endif // HDK_VECTOR_HPP

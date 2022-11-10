@@ -15,9 +15,9 @@ add_library(hdk STATIC
 	src/hdk/hdk.hpp
 	src/hdk/hdk.cpp
 	src/hdk/macros.hpp
-	src/hdk/vector.cpp
-	src/hdk/vector.hpp
-	src/hdk/vector.inl
+	src/hdk/data/vector.cpp
+	src/hdk/data/vector.hpp
+	src/hdk/data/vector.inl
 )
 hdk_configure_common(TARGET hdk)
 target_include_directories(hdk PUBLIC "${PROJECT_SOURCE_DIR}/src")
