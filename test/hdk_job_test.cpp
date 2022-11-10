@@ -41,9 +41,9 @@ TESTFUNC_BEGIN(multi_job)
 
 	for(std::size_t i = 0; i < job_size; i += (job_size/job_chunk_length))
 	{
-		hdk::job_system().execute([job_chunk_length, i, &x, &y, &z]()
+		hdk::job_system().execute([begin = i, end = i + job_chunk_length, &x, &y, &z]()
 		{
-			for(std::size_t j = i; j < (i + job_chunk_length); j++)
+			for(std::size_t j = begin; j < end; j++)
 			{
 				z[j] = x[j] + y[j];
 			}

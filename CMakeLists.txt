@@ -20,6 +20,16 @@ add_library(hdk STATIC
 	src/hdk/job/impl/stdasync/job.cpp
 	src/hdk/job/impl/stdasync/job.hpp
 
+	src/hdk/memory/allocators/adapter.hpp
+	src/hdk/memory/allocators/fallback.hpp
+	src/hdk/memory/allocators/linear.cpp
+	src/hdk/memory/allocators/linear.hpp
+	src/hdk/memory/allocators/malloc.cpp
+	src/hdk/memory/allocators/malloc.hpp
+	src/hdk/memory/allocators/null.hpp
+	src/hdk/memory/allocators/stack.hpp
+	src/hdk/memory/allocators/stack.inl
+
 	src/hdk/concepts.hpp
 	src/hdk/debug.cpp
 	src/hdk/debug.hpp
