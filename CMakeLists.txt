@@ -9,15 +9,23 @@ include(cmake/project.cmake)
 include(cmake/test.cmake)
 
 add_library(hdk STATIC
+	src/hdk/data/handle.hpp
+	src/hdk/data/vector.cpp
+	src/hdk/data/vector.hpp
+	src/hdk/data/vector.inl
+	
+	src/hdk/job/job.hpp
+	src/hdk/job/job.cpp
+	src/hdk/job/api/job.hpp
+	src/hdk/job/impl/stdthreads/job.cpp
+	src/hdk/job/impl/stdthreads/job.hpp
+
 	src/hdk/concepts.hpp
 	src/hdk/debug.cpp
 	src/hdk/debug.hpp
 	src/hdk/hdk.hpp
 	src/hdk/hdk.cpp
 	src/hdk/macros.hpp
-	src/hdk/data/vector.cpp
-	src/hdk/data/vector.hpp
-	src/hdk/data/vector.inl
 )
 hdk_configure_common(TARGET hdk)
 target_include_directories(hdk PUBLIC "${PROJECT_SOURCE_DIR}/src")
