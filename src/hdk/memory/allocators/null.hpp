@@ -6,7 +6,7 @@
 namespace hdk
 {
 	/**
-	 * @ingroup hdk_core_allocators
+	 * @ingroup hdk_memory_allocator
 	 * An allocator which always returns nullptr.
 	 */
 	class null_allocator

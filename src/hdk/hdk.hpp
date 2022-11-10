@@ -22,6 +22,18 @@ namespace hdk
 	 */
 
 	/**
+	 * @ingroup hdk
+	 * @defgroup hdk_memory Memory Utility
+	 * Documentation for a grab-bag of memory helper structs, classes and functions.
+	 */
+
+	/**
+	 * @ingroup hdk_memory
+	 * @defgroup hdk_memory_allocator Allocators
+	 * Documentation for bespoke memory allocators.
+	 */
+
+	/**
 	 * @ingroup hdk_init
 	 * Initialise HDK.
 	 */

@@ -6,7 +6,7 @@
 namespace hdk
 {
 	/**
-	 * @ingroup hdk_core_allocators
+	 * @ingroup hdk_memory_allocator
 	 * Implements @ref hdk::allocator
 	 *
 	 * A meta-allocator which will use a primary allocator, but fall-back to a secondary allocator upon failure. fallback_allocators can be chained together.

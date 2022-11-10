@@ -6,10 +6,10 @@
 namespace hdk
 {
 	/**
-	 * @ingroup tz_core_allocators
-	 * Implements @ref tz:Allocator
+	 * @ingroup hdk_memory_allocator
+	 * Implements @ref hdk:allocator
 	 *
-	 * An allocator which simply calls malloc. It thinks it owns all memory, so if you're using this in a @ref tz::FallbackAllocator make sure it is always used as a secondary allocator, never the primary (or you will `free()` no matter what).
+	 * An allocator which simply calls malloc. It thinks it owns all memory, so if you're using this in a @ref hdk::fallback_allocator make sure it is always used as a secondary allocator, never the primary (or you will `free()` no matter what).
 	 */
 	class mallocator
 	{

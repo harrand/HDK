@@ -5,10 +5,10 @@
 namespace hdk
 {
 	/**
-	 * @ingroup tz_core_allocators
+	 * @ingroup hdk_memory_allocator
 	 * An allocator which has its own fixed-size buffer on the stack from which memory is sub-allocated. Aside from operating on its own stack arena, a stack allocator behaves identically to a @ref linear_allocator.
 	 *
-	 * stack_allocators are excellent candidates for fallback allocators. `FallbackAllocator<stack_allocator<X>, Mallocator>` allows you to have small-size optimisation for free, for example.
+	 * stack_allocators are excellent candidates for fallback allocators. `fallback_allocator<stack_allocator<X>, mallocator>` allows you to have small-size optimisation for free, for example.
 	 * @tparam S Size of local automatic storage.
 	 */
 	template<std::size_t S>

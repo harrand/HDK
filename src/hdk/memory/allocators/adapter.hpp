@@ -7,8 +7,8 @@
 namespace hdk
 {
 	/**
-	 * @ingroup hdk_core_allocators
-	 * A meta-allocator which allows a topaz allocator to be used as if it were a `std::allocator`. This means it can be used for standard-library containers.
+	 * @ingroup hdk_memory_allocator
+	 * A meta-allocator which allows a HDK allocator to be used as if it were a `std::allocator`. This means it can be used for standard-library containers.
 	 *
 	 * For instance:
 	 * `std::vector<int, std::allocator<int>>` is functionally equivalent to `std::vector<int, hdk::allocator_adapter<int, hdk::Mallocator>>`
@@ -32,7 +32,7 @@ namespace hdk
 		T* allocate(std::size_t n)
 		{
 			hdk::memblk blk = A::allocate(n * sizeof(T));
-			hdk::assert(blk != nullblk, "allocator_adapter -- The underlying topaz allocator returned a null-block. Memory allocation failed. The standard library allocator is going to crash.");
+			hdk::assert(blk != nullblk, "allocator_adapter -- The underlying HDK allocator returned a null-block. Memory allocation failed. The standard library allocator is going to crash.");
 			return reinterpret_cast<T*>(blk.ptr);
 		}
 
