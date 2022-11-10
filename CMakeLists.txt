@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.21)
 
 project(hdk
 	LANGUAGES CXX
-	VERSION 1.0.0
 	DESCRIPTION "C++ Application Framework"
 )
 
@@ -16,6 +15,7 @@ add_library(hdk STATIC
 	src/hdk/debug.hpp
 	src/hdk/hdk.hpp
 	src/hdk/hdk.cpp
+	src/hdk/macros.hpp
 	src/hdk/vector.cpp
 	src/hdk/vector.hpp
 	src/hdk/vector.inl
@@ -30,6 +30,9 @@ endif()
 
 add_subdirectory(vendor)
 target_link_libraries(hdk PRIVATE debugbreak)
+target_link_libraries(hdk PUBLIC textc_lib)
+
+include(cmake/text.cmake)
 
 enable_testing()
 add_subdirectory(test)
