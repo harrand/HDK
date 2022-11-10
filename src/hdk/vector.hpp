@@ -9,9 +9,8 @@
 namespace hdk
 {
 	/**
-	 * @ingroup hdk_core_vecmat
-	 * Represents a mathematical vector of S elements.
-	 * Typically, elements would be floats or doubles, but in this implementation they are templated on T.
+	 * @ingroup hdk
+	 * @internal
 	 */
 	template<hdk::numeric T, std::size_t S>
 	class vector
@@ -176,9 +175,11 @@ namespace hdk
 	};
 
 	/**
-	 * @ingroup hdk_core_vecmat
+	 * @ingroup hdk
 	 * @{
 	 */
+
+	using vec1 = vector<float, 1>;
 	/// A vector of two floats.
 	using vec2 = vector<float, 2>;
 	/// A vector of three floats.
