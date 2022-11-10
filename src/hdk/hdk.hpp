@@ -16,6 +16,12 @@ namespace hdk
 	 */
 
 	/**
+	 * @ingroup hdk
+	 * @defgroup hdk_job Job System
+	 * Documentation for job-system.
+	 */
+
+	/**
 	 * @ingroup hdk_init
 	 * Initialise HDK.
 	 */
