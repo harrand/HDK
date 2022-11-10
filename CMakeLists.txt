@@ -17,8 +17,8 @@ add_library(hdk STATIC
 	src/hdk/job/job.hpp
 	src/hdk/job/job.cpp
 	src/hdk/job/api/job.hpp
-	src/hdk/job/impl/stdthreads/job.cpp
-	src/hdk/job/impl/stdthreads/job.hpp
+	src/hdk/job/impl/stdasync/job.cpp
+	src/hdk/job/impl/stdasync/job.hpp
 
 	src/hdk/concepts.hpp
 	src/hdk/debug.cpp

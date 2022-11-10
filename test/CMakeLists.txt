@@ -4,6 +4,11 @@ hdk_add_test(
 )
 
 hdk_add_test(
+	TARGET hdk_job_test
+	SOURCES hdk_job_test.cpp
+)
+
+hdk_add_test(
 	TARGET hdk_text_test
 	SOURCES hdk_text_test.cpp
 )
