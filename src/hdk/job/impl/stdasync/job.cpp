@@ -69,7 +69,7 @@ namespace hdk::impl
 	{
 		for(std::size_t i = 0; i < this->jobs.size(); i++)
 		{
-			if(!this->jobs[i].valid())
+			if(!this->jobs[i].valid() || detail::is_ready(this->jobs[i]))
 			{
 				return i;
 			}
