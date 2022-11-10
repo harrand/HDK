@@ -5,7 +5,6 @@ project(hdk
 	DESCRIPTION "C++ Application Framework"
 )
 
-set(HDK_CXX_VERSION 20)
 include(cmake/project.cmake)
 include(cmake/test.cmake)
 
