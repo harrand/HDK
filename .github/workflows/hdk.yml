@@ -19,4 +19,4 @@ jobs:
       - name: 'Configure HDK CMake Project'
         run: cmake --preset ci-${{inputs.build_config}} -DCMAKE_CXX_COMPILER=g++
       - name: 'Build ${{inputs.target}}'
-        run: cd build/debug && cmake --build --target ${{inputs.target}}
+        run: cmake --build ./build/debug --target ${{inputs.target}}
