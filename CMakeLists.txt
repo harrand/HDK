@@ -8,6 +8,8 @@ project(hdk
 include(cmake/project.cmake)
 include(cmake/test.cmake)
 
+find_package(Threads)
+
 add_library(hdk STATIC
 	src/hdk/data/handle.hpp
 	src/hdk/data/vector.cpp
@@ -48,7 +50,7 @@ else()
 endif()
 
 add_subdirectory(vendor)
-target_link_libraries(hdk PRIVATE debugbreak)
+target_link_libraries(hdk PRIVATE debugbreak Threads::Threads)
 target_link_libraries(hdk PUBLIC textc_lib)
 
 include(cmake/text.cmake)
