@@ -16,7 +16,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+      - name: 'Install G++-11'
+        run: sudo apt install gcc-11 g++-11
       - name: 'Configure HDK CMake Project'
-        run: cmake --preset ci-${{inputs.build_config}} -DCMAKE_CXX_COMPILER=g++-10
+        run: cmake --preset ci-${{inputs.build_config}} -DCMAKE_CXX_COMPILER=g++-11
       - name: 'Build ${{inputs.target}}'
         run: cmake --build ./build/debug --target ${{inputs.target}}
