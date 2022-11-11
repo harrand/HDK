@@ -29,6 +29,8 @@ add_library(hdk STATIC
 	src/hdk/memory/allocators/null.hpp
 	src/hdk/memory/allocators/stack.hpp
 	src/hdk/memory/allocators/stack.inl
+	src/hdk/memory/clone.hpp
+	src/hdk/memory/memblk.hpp
 
 	src/hdk/concepts.hpp
 	src/hdk/debug.cpp
