@@ -17,6 +17,6 @@ jobs:
         with:
           submodules: recursive
       - name: 'Configure HDK CMake Project'
-        run: cmake --preset ci-${{inputs.build_config}} -DCMAKE_CXX_COMPILER=g++-11
+        run: cmake --preset ci-${{inputs.build_config}} -DCMAKE_CXX_COMPILER=g++-10
       - name: 'Build ${{inputs.target}}'
         run: cmake --build ./build/debug --target ${{inputs.target}}
