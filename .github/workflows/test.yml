@@ -1,0 +1,12 @@
+name: "HDK Unit Tests"
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  code_build:
+    uses: Harrand/HDK/.github/workflows/hdk.yml@master
+    with:
+      target: hdktest
+      build_config: debug
