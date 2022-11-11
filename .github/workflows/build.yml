@@ -1,0 +1,12 @@
+name: "HDK Code Build"
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  code_build:
+    uses: Harrand/HDK/.github/workflows/hdk.yml@master
+    with:
+      target: hdk
+      build_config: debug

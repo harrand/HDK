@@ -1,0 +1,22 @@
+name: "HDK Task"
+on:
+  workflow_call:
+    inputs:
+      target:
+        required: true
+        type: string
+      build_config:
+        required: true
+        type: string
+
+jobs:
+  hdk_task:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: 'Configure HDK CMake Project'
+        run: cmake --preset ci-${{inputs.build_config}} -CMAKE_CXX_COMPILER=g++
+      - name: 'Build ${{inputs.target}}'
+        run: cd build/debug && cmake --build --target ${{inputs.target}}
