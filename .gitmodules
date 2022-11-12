@@ -4,3 +4,6 @@
 [submodule "vendor/textc"]
 	path = vendor/textc
 	url = https://github.com/Harrand/textc
+[submodule "vendor/tracy"]
+	path = vendor/tracy
+	url = https://github.com/wolfpld/tracy
