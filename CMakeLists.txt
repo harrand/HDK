@@ -5,6 +5,8 @@ project(hdk
 	DESCRIPTION "C++ Application Framework"
 )
 
+option(HDK_PROFILE "Whether profiling is enabled or not" 0)
+
 include(cmake/project.cmake)
 include(cmake/test.cmake)
 
@@ -40,15 +42,27 @@ add_library(hdk STATIC
 	src/hdk/hdk.hpp
 	src/hdk/hdk.cpp
 	src/hdk/macros.hpp
+	src/hdk/profile.hpp
 )
 hdk_configure_common(TARGET hdk)
 target_include_directories(hdk PUBLIC "${PROJECT_SOURCE_DIR}/src")
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
 	target_compile_definitions(hdk PUBLIC "-DHDK_DEBUG=1")
 	hdk_configure_debug(TARGET hdk)
-else()
+elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
 	target_compile_definitions(hdk PUBLIC "-DHDK_DEBUG=0")
 	hdk_configure_release(TARGET hdk)
+else()
+	message(FATAL_ERROR "CMAKE_BUILD_TYPE not recognised \"${CMAKE_BUILD_TYPE}\"")
+endif()
+
+if(${HDK_PROFILE} EQUAL 1)
+	message(STATUS "HDK - Profiling enabled in this build")
+	target_compile_definitions(hdk PUBLIC "-DHDK_PROFILE=1")
+	hdk_configure_profile(TARGET hdk)
+else()
+	message(STATUS "HDK - Profiling disabled in this build")
+	target_compile_definitions(hdk PUBLIC "-DHDK_PROFILE=0")
 endif()
 
 add_subdirectory(vendor)

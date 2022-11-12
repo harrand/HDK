@@ -48,3 +48,20 @@ function(hdk_configure_release)
 	)
 
 endfunction()
+
+function(hdk_configure_profile)
+	cmake_parse_arguments(
+		HDK_CONFIGURE_PROFILE
+		""
+		"TARGET"
+		""
+		${ARGN}
+	)
+
+	# Tracy Specific:
+	target_compile_definitions(${HDK_CONFIGURE_PROFILE_TARGET} PUBLIC -DTRACY_ENABLE -DTRACY_DELAYED_INIT)
+	target_link_libraries(${HDK_CONFIGURE_PROFILE_TARGET} PUBLIC TracyClient)
+	if(WIN32)
+		target_link_libraries(${HDK_CONFIGURE_PROFILE_TARGET} PUBLIC ws2_32 dbghelp)
+	endif()
+endfunction()
