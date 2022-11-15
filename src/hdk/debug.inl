@@ -26,7 +26,7 @@ namespace hdk
 		std::fprintf(stdout, fmt, std::forward<Args>(args)...);
 		std::string diag_info = "\n\tIn file ";
 		diag_info += std::string{loc.file_name()} + ":" + std::to_string(loc.line()) + ":" + std::to_string(loc.column()) + std::string{"\n\t>\t"} + loc.function_name();
-		std::fprintf(stdout, "%s", diag_info.c_str());
+		std::fprintf(stdout, "%s\n", diag_info.c_str());
 	}
 
 	template<typename... Args>
