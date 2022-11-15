@@ -13,7 +13,7 @@ function(hdk_base_add_test_harness)
 	"
 	add_custom_target(${HDK_BASE_ADD_TEST_HARNESS_BASE_NAME}test_build)
 	add_custom_target(${HDK_BASE_ADD_TEST_HARNESS_BASE_NAME}test
-		COMMAND \"${CMAKE_CTEST_COMMAND}\" --output-on-failure --schedule-random -R ${HDK_BASE_ADD_TEST_HARNESS_BASE_NAME}
+		COMMAND \"${CMAKE_CTEST_COMMAND}\" --output-on-failure --schedule-random -L \"${HDK_BASE_ADD_TEST_HARNESS_BASE_NAME}\"
 			WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
 		)
 	")
@@ -41,6 +41,7 @@ function(hdk_base_add_test)
 			COMMAND ${HDK_BASE_ADD_TEST_TARGET}
 			WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
 		)
+		set_tests_properties(${HDK_BASE_ADD_TEST_TARGET} PROPERTIES LABELS \"${HDK_BASE_ADD_TEST_BASE_NAME}\")
 
 		add_dependencies(${HDK_BASE_ADD_TEST_BASE_NAME}test_build ${HDK_BASE_ADD_TEST_TARGET})
 		add_dependencies(${HDK_BASE_ADD_TEST_BASE_NAME}test ${HDK_BASE_ADD_TEST_TARGET})
