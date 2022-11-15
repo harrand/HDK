@@ -20,6 +20,20 @@ namespace hdk
 	}
 
 	template<typename... Args>
+	void report_internal(const char* preamble, const char* fmt, const std::source_location& loc, Args&&... args)
+	{
+		std::fprintf(stdout, "%s", preamble);
+		std::fprintf(stdout, fmt, std::forward<Args>(args)...);
+
+
+		std::string diag_info = "\n\tIn file ";
+		diag_info += std::string{loc.file_name()} + ":" + std::to_string(loc.line()) + ":" + std::to_string(loc.column()) + std::string{"\n\t>\t"} + loc.function_name();
+
+		std::fprintf(stdout, "%s", diag_info.c_str());
+		debug_break();
+	}
+
+	template<typename... Args>
 	void assert([[maybe_unused]] bool condition, [[maybe_unused]] detail::format_string fmt, [[maybe_unused]] Args&&... args)
 	{
 		#if HDK_DEBUG
@@ -36,6 +50,14 @@ namespace hdk
 	{
 		#if HDK_DEBUG
 			error_internal("[Error]: ", fmt.str, fmt.loc, std::forward<Args>(args)...);
+		#endif
+	}
+
+	template<typename... Args>
+	void report([[maybe_unused]] detail::format_string fmt, [[maybe_unused]] Args&&... args)
+	{
+		#if HDK_DEBUG
+			report_internal("[%s]: ", fmt.loc.file_name, fmt.str, fmt.loc, std::forward<Args>(args)...);
 		#endif
 	}
 

@@ -25,6 +25,9 @@ namespace hdk
 	template<typename... Args>
 	void error(detail::format_string fmt = "<No message>", Args&&... args);
 
+	template<typename... Args>
+	void report(detail::format_string fmt, Args&&... args);
+
 	void debug_break();
 }
 
