@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.21)
 project(hdk
 	LANGUAGES CXX
 	DESCRIPTION "C++ Application Framework"
+	VERSION "1.1.0.1"
 )
 
 option(HDK_PROFILE "Whether profiling is enabled or not" 0)
@@ -17,6 +18,8 @@ add_library(hdk STATIC
 	src/hdk/data/vector.cpp
 	src/hdk/data/vector.hpp
 	src/hdk/data/vector.inl
+	src/hdk/data/version.cpp
+	src/hdk/data/version.hpp
 	
 	src/hdk/job/job.hpp
 	src/hdk/job/job.cpp
@@ -46,6 +49,7 @@ add_library(hdk STATIC
 )
 hdk_configure_common(TARGET hdk)
 target_include_directories(hdk PUBLIC "${PROJECT_SOURCE_DIR}/src")
+target_compile_definitions(hdk PRIVATE "-DHDK_VER=0x${PROJECT_VERSION_MAJOR}${PROJECT_VERSION_MINOR}${PROJECT_VERSION_PATCH}${PROJECT_VERSION_TWEAK}")
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
 	target_compile_definitions(hdk PUBLIC "-DHDK_DEBUG=1")
 	hdk_configure_debug(TARGET hdk)
