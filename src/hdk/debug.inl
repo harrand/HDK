@@ -57,7 +57,7 @@ namespace hdk
 	void report([[maybe_unused]] detail::format_string fmt, [[maybe_unused]] Args&&... args)
 	{
 		#if HDK_DEBUG
-			report_internal("[%s]: ", fmt.str, fmt.loc, fmt.loc.file_name(), std::forward<Args>(args)...);
+			report_internal("[Report]: ", fmt.str, fmt.loc, std::forward<Args>(args)...);
 		#endif
 	}
 
