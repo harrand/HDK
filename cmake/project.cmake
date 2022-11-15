@@ -32,15 +32,18 @@ function(hdk_base_add_executable)
 		${ARGN}
 	)
 	
-	add_executable(${HDK_BASE_ADD_EXECUTABLE_TARGET}
-		${HDK_BASE_ADD_EXECUTABLE_SOURCES}
-	)
+	cmake_language(EVAL CODE
+	"
+		add_executable(${HDK_BASE_ADD_EXECUTABLE_TARGET}
+			${HDK_BASE_ADD_EXECUTABLE_SOURCES}
+		)
 
-	hdk_configure_common(
-		TARGET ${HDK_BASE_ADD_EXECUTABLE_TARGET}
-	)
+		hdk_configure_common(
+			TARGET ${HDK_BASE_ADD_EXECUTABLE_TARGET}
+		)
 
-target_link_libraries(${HDK_BASE_ADD_EXECUTABLE_TARGET} PUBLIC ${HDK_BASE_ADD_EXECUTABLE_BASE})
+		target_link_libraries(${HDK_BASE_ADD_EXECUTABLE_TARGET} PUBLIC ${HDK_BASE_ADD_EXECUTABLE_BASE})
+	")
 endfunction()
 
 function(hdk_add_library)
