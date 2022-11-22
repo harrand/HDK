@@ -5,6 +5,8 @@
 #include <string>
 #include <functional>
 
+#undef assert
+
 namespace hdk
 {
 	namespace detail

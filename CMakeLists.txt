@@ -26,6 +26,8 @@ add_library(hdk STATIC
 	src/hdk/job/api/job.hpp
 	src/hdk/job/impl/stdasync/job.cpp
 	src/hdk/job/impl/stdasync/job.hpp
+	src/hdk/job/impl/threadpool_lfq/job.cpp
+	src/hdk/job/impl/threadpool_lfq/job.hpp
 
 	src/hdk/memory/allocators/adapter.hpp
 	src/hdk/memory/allocators/fallback.hpp
@@ -71,7 +73,7 @@ endif()
 
 add_subdirectory(vendor)
 target_link_libraries(hdk PRIVATE debugbreak Threads::Threads)
-target_link_libraries(hdk PUBLIC textc_lib)
+target_link_libraries(hdk PUBLIC textc_lib concurrentqueue)
 
 include(cmake/text.cmake)
 

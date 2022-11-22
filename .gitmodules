@@ -7,3 +7,6 @@
 [submodule "vendor/tracy"]
 	path = vendor/tracy
 	url = https://github.com/wolfpld/tracy
+[submodule "vendor/concurrentqueue"]
+	path = vendor/concurrentqueue
+	url = https://github.com/cameron314/concurrentqueue

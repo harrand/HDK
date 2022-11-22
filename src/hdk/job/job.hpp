@@ -3,6 +3,7 @@
 
 // TODO: Configurable
 #include "hdk/job/impl/stdasync/job.hpp"
+#include "hdk/job/impl/threadpool_lfq/job.hpp"
 
 namespace hdk
 {
@@ -10,7 +11,7 @@ namespace hdk
 	 * @ingroup hdk_job
 	 * Underlying job system. See @ref hdk::job_system_type for API.
 	 */
-	using job_system_t = hdk::impl::job_system_stdasync;
+	using job_system_t = hdk::impl::job_system_threadpool_lfq;
 
 	/**
 	 * @ingroup hdk_job
