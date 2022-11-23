@@ -1,6 +1,7 @@
 #include "hdk/hdk.hpp"
 #include "hdk/job/job.hpp"
 #include "hdk/debug.hpp"
+#include "hdk/profile.hpp"
 #include <numeric>
 #include <array>
 #include <algorithm>
@@ -9,6 +10,7 @@
 #define TESTFUNC_END ;hdk::job_system().block_all(); hdk::assert(!hdk::job_system().any_work_remaining());}
 
 TESTFUNC_BEGIN(basic_job)
+	HDK_PROFZONE("basic job", 0xFF00AA00);
 	int x = 1;
 	auto j = hdk::job_system().execute([&x]()
 	{
@@ -21,6 +23,7 @@ TESTFUNC_BEGIN(basic_job)
 TESTFUNC_END
 
 TESTFUNC_BEGIN(job_reuse)
+	HDK_PROFZONE("job reuse", 0xFF00AA00);
 	auto j = hdk::job_system().execute([](){});
 	hdk::job_system().block_all();
 	hdk::assert(hdk::job_system().complete(j));
@@ -29,8 +32,9 @@ TESTFUNC_BEGIN(job_reuse)
 TESTFUNC_END
 
 TESTFUNC_BEGIN(multi_job)
-	constexpr std::size_t job_size = 64;
-	constexpr std::size_t job_chunk_length = 8;
+	HDK_PROFZONE("multi job", 0xFF00AA00);
+	constexpr std::size_t job_chunk_length = 32;
+	constexpr std::size_t job_size = job_chunk_length * job_chunk_length;
 	std::array<int, job_size> x;
 	std::iota(x.begin(), x.end(), 0);
 	std::array<int, job_size> y;
@@ -58,11 +62,12 @@ int main()
 {
 	hdk::initialise();
 
-	for(std::size_t i = 0; i < 256; i++)
+	for(std::size_t i = 0; i < 10860; i++)
 	{
 		basic_job();
 		job_reuse();
 		multi_job();
+		HDK_FRAME;
 	}
 
 	hdk::terminate();

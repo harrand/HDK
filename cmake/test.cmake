@@ -64,5 +64,6 @@ function(hdk_add_test)
 		BASE_NAME hdk
 		SOURCES ${HDK_ADD_TEST_SOURCES}
 	)
+	target_compile_definitions(${HDK_ADD_TEST_TARGET} PRIVATE "-DTRACY_NO_EXIT=1")
 endfunction()
 hdk_base_add_test_harness(BASE_NAME hdk)

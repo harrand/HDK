@@ -73,7 +73,7 @@ endif()
 
 add_subdirectory(vendor)
 target_link_libraries(hdk PRIVATE debugbreak Threads::Threads)
-target_link_libraries(hdk PUBLIC textc_lib concurrentqueue)
+target_link_libraries(hdk PUBLIC textc_lib concurrentqueue TracyClient)
 
 include(cmake/text.cmake)
 

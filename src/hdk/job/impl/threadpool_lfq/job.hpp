@@ -39,7 +39,7 @@ namespace hdk::impl
 		std::deque<worker_t> thread_pool;
 		moodycamel::ConcurrentQueue<job_info_t> jobs;
 		std::atomic<bool> requires_exit = false;
-		std::size_t lifetime_count = 0;
+		std::atomic<std::size_t> lifetime_count = 0;
 		std::vector<std::size_t> waiting_job_ids = {};
 		mutable std::mutex waiting_job_id_mutex;
 	};
