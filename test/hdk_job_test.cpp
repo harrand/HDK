@@ -62,7 +62,7 @@ int main()
 {
 	hdk::initialise();
 
-	for(std::size_t i = 0; i < 10860; i++)
+	for(std::size_t i = 0; i < 1024; i++)
 	{
 		basic_job();
 		job_reuse();

@@ -1,7 +1,10 @@
 #ifndef HDK_PROFILE_HPP
 #define HDK_PROFILE_HPP
+#if HDK_PROFILE
 #include "tracy/Tracy.hpp"
 #include "common/TracySystem.hpp"
+#include "client/TracyProfiler.hpp"
+#endif
 #undef assert
 
 #if HDK_PROFILE
