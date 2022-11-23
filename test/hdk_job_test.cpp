@@ -58,9 +58,12 @@ int main()
 {
 	hdk::initialise();
 
-	basic_job();
-	job_reuse();
-	multi_job();
+	for(std::size_t i = 0; i < 256; i++)
+	{
+		basic_job();
+		job_reuse();
+		multi_job();
+	}
 
 	hdk::terminate();
 	return 0;

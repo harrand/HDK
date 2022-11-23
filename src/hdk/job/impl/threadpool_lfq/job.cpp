@@ -37,7 +37,10 @@ namespace hdk::impl
 			.func = job,
 			.id = this->lifetime_count
 		};
-		this->waiting_job_ids.push_back(this->lifetime_count);
+		{
+			std::unique_lock<std::mutex> lock(this->waiting_job_id_mutex);
+			this->waiting_job_ids.push_back(this->lifetime_count);
+		}
 		this->jobs.enqueue(jinfo);
 		return static_cast<hanval>(this->lifetime_count++);
 	}
@@ -65,7 +68,7 @@ namespace hdk::impl
 
 	bool job_system_threadpool_lfq::any_work_remaining() const
 	{
-		return this->size() > 0;
+		return !this->waiting_job_ids.empty() || this->size() > 0 || std::any_of(this->thread_pool.begin(), this->thread_pool.end(), [](const worker_t& worker){return worker.current_job != job_id_null;});
 	}
 
 	void job_system_threadpool_lfq::block_all() const
@@ -90,14 +93,16 @@ namespace hdk::impl
 			bool found = this->jobs.try_dequeue(job);
 			if(!found)
 			{
-				std::this_thread::sleep_for(std::chrono::duration<unsigned int, std::milli>(1));
+				this->wait_a_bit();
 				continue;
 			}
 
 			worker.current_job = job.id;
 			{
 				std::unique_lock<std::mutex> lock(this->waiting_job_id_mutex);
-				this->waiting_job_ids.erase(std::remove(this->waiting_job_ids.begin(), this->waiting_job_ids.end(), job.id));
+				auto iter = std::find(this->waiting_job_ids.begin(), this->waiting_job_ids.end(), job.id);
+				hdk::assert(iter != this->waiting_job_ids.end(), "Job system thread took a job, but it's id is not on the list of waiting jobs, as it should be.");
+				this->waiting_job_ids.erase(iter);
 			}
 			job.func();
 			worker.current_job = job_id_null;
