@@ -30,9 +30,6 @@ namespace hdk::impl
 		};
 		struct job_info_t
 		{
-			enum class job_state{created, running, finished};
-
-			job_state state;
 			job_t func;
 			std::size_t id;
 		};

@@ -1,4 +1,5 @@
 #include "hdk/job/impl/threadpool_lfq/job.hpp"
+#include "hdk/debug.hpp"
 #include <chrono>
 #include <limits>
 
@@ -26,13 +27,13 @@ namespace hdk::impl
 		{
 			worker.thread.join();
 		}
+		hdk::assert(!this->any_work_remaining());
 	}
 
 	job_handle job_system_threadpool_lfq::execute(job_t job)
 	{
 		job_info_t jinfo
 		{
-			.state = job_info_t::job_state::created,
 			.func = job,
 			.id = this->lifetime_count
 		};
@@ -98,9 +99,7 @@ namespace hdk::impl
 				std::unique_lock<std::mutex> lock(this->waiting_job_id_mutex);
 				this->waiting_job_ids.erase(std::remove(this->waiting_job_ids.begin(), this->waiting_job_ids.end(), job.id));
 			}
-			job.state = job_info_t::job_state::running;
 			job.func();
-			job.state = job_info_t::job_state::finished;
 			worker.current_job = job_id_null;
 		}
 	}
