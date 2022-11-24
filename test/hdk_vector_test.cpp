@@ -90,6 +90,7 @@ void append_tests()
 
 void zero()
 {
+	hdk::assert(hdk::vec2i::filled(5) == hdk::vec2i{5, 5});
 	hdk::assert(hdk::vec2i::zero() == hdk::vec2i{0, 0});
 }
 

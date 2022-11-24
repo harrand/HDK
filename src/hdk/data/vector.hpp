@@ -17,12 +17,24 @@ namespace hdk
 	class vector
 	{
 	public:
+		/**
+		 * Create a vector filled entirely with zeros.
+		 */
 		static constexpr vector<T, S> zero()
 		{
+			return vector<T, S>::filled(T{0});
+		}
+
+		/**
+		 * Create a vector filled entirely with a given value.
+		 */
+		static constexpr vector<T, S> filled(T t)
+		{
 			std::array<T, S> values;
-			std::fill(values.begin(), values.end(), T{0});
+			std::fill(values.begin(), values.end(), t);
 			return {values};
 		}
+
 		/**
 		 * Construct a vector directly using a variadic parameter pack value.
 		 * Static Precondition: sizeof...(Ts) == S, otherwise the program is ill-formed.
