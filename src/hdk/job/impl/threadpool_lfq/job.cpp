@@ -86,7 +86,7 @@ namespace hdk::impl
 
 	void job_system_threadpool_lfq::tmain(std::size_t local_tid)
 	{
-		HDK_THREAD("Job System Worker Thread");
+		HDK_THREAD("hdk::job_system() Worker");
 		worker_t& worker = this->thread_pool[local_tid];
 		while(!this->requires_exit.load())
 		{
@@ -113,7 +113,6 @@ namespace hdk::impl
 	
 	void job_system_threadpool_lfq::wait_a_bit()
 	{
-		HDK_PROFZONE("job wait", 0xFF00AAAA);
 		std::this_thread::sleep_for(std::chrono::duration<int, std::micro>(10));
 	}
 }
