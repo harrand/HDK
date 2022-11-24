@@ -5,8 +5,8 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = "HDK"
-PROJECT_NUMBER         = "1.0 (Indev)"
 PROJECT_BRIEF          = "Harrand Development Kit"
+@INCLUDE = "version.txt"
 PROJECT_LOGO           = doc/hdk.png
 OUTPUT_DIRECTORY       = ./doc
 CREATE_SUBDIRS         = NO

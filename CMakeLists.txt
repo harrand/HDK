@@ -1,9 +1,13 @@
 cmake_minimum_required(VERSION 3.21)
 
+configure_file(version.txt version_txt_dummy.xml)
+file(READ version.txt HDK_VERSION_TXT)
+string(REGEX MATCH "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" HDK_VER ${HDK_VERSION_TXT})
+
 project(hdk
 	LANGUAGES CXX
 	DESCRIPTION "C++ Application Framework"
-	VERSION "1.1.0.1"
+	VERSION ${HDK_VER}
 )
 
 option(HDK_PROFILE "Whether profiling is enabled or not" 0)

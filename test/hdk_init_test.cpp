@@ -5,5 +5,6 @@
 int main()
 {
 	hdk::initialise();
+	hdk::report("HDK v%s", hdk::get_version().to_string().c_str());
 	hdk::terminate();
 }
