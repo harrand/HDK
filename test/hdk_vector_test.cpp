@@ -88,6 +88,11 @@ void append_tests()
 	hdk::assert(even_more_nums == result1, "vector append (another vector) does not work correctly.");
 }
 
+void zero()
+{
+	hdk::assert(hdk::vec2i::zero() == hdk::vec2i{0, 0});
+}
+
 int main()
 {
 	addition_subtraction();
@@ -96,4 +101,5 @@ int main()
 	swizzle_test();
 	cast_test();
 	append_tests();
+	zero();
 }

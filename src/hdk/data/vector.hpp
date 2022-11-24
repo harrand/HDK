@@ -5,6 +5,7 @@
 #include <array>
 #include <tuple>
 #include <span>
+#include <cstdint>
 
 namespace hdk
 {
@@ -16,6 +17,12 @@ namespace hdk
 	class vector
 	{
 	public:
+		static constexpr vector<T, S> zero()
+		{
+			std::array<T, S> values;
+			std::fill(values.begin(), values.end(), T{0});
+			return {values};
+		}
 		/**
 		 * Construct a vector directly using a variadic parameter pack value.
 		 * Static Precondition: sizeof...(Ts) == S, otherwise the program is ill-formed.
@@ -200,6 +207,21 @@ namespace hdk
 	using vec3ui = vector<unsigned int, 3>;
 	/// A vector of four unsigned ints.
 	using vec4ui = vector<unsigned int, 4>;
+
+	/// A vector of two 32-bit ints.
+	using vec2i32 = vector<std::int32_t, 2>;
+	/// A vector of three 32-bit ints.
+	using vec3i32 = vector<std::int32_t, 3>;
+	/// A vector of four 32-bit ints.
+	using vec4i32 = vector<std::int32_t, 4>;
+
+	/// A vector of two 32-bit unsigned ints.
+	using vec2ui32 = vector<std::uint32_t, 2>;
+	/// A vector of three 32-bit unsigned ints.
+	using vec3ui32 = vector<std::uint32_t, 3>;
+	/// A vector of four 32-bit unsigned ints.
+	using vec4ui32 = vector<std::uint32_t, 4>;
+
 
 	template<typename T = float>
 	vector<T, 3> cross(const vector<T, 3>& lhs, const vector<T, 3>& rhs);
