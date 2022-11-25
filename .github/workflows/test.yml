@@ -9,4 +9,4 @@ jobs:
     uses: ./.github/workflows/hdk.yml
     with:
       target: hdktest
-      build_config: ci-
+      preset_prefix: ci-
