@@ -18,7 +18,7 @@ namespace hdk
 		handle(hanval v):
 		value(v){}
 
-		handle(nullhand_t nh):
+		handle([[maybe_unused]] nullhand_t nh):
 		value(static_cast<hanval>(std::numeric_limits<std::underlying_type_t<hanval>>::max())){}
 
 		explicit operator hanval() const
@@ -34,9 +34,15 @@ namespace hdk
 
 		bool operator==(nullhand_t) const
 		{
-			return handle<T>{}.value == this->value;
+			return handle<T>{nullhand}.value == this->value;
 		}
+		bool operator!=(nullhand_t) const
+		{
+			return handle<T>{nullhand}.value != this->value;
+		}
+
 		bool operator==(const handle<T>& rhs) const = default;
+		bool operator!=(const handle<T>& rhs) const = default;
 	private:
 		hanval value;
 	};
