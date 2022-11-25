@@ -26,4 +26,4 @@ jobs:
       - name: 'Configure HDK CMake Project'
         run: cmake --preset ${{inputs.preset_prefix}}${{matrix.build_config}} -DCMAKE_CXX_COMPILER=${{matrix.compiler}}
       - name: 'Build ${{inputs.target}}'
-        run: cmake --build ./build/debug --target ${{inputs.target}}
+        run: cmake --build ./build/${{matrix.build_config}} --target ${{inputs.target}}
