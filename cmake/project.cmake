@@ -58,6 +58,7 @@ function(hdk_add_library)
 	hdk_base_add_library(
 		TARGET ${HDK_ADD_LIBRARY_TARGET}
 		BASE hdk
+		SOURCES ${HDK_ADD_LIBRARY_SOURCES}
 	)
 endfunction()
 
