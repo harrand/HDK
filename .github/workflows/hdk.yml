@@ -15,7 +15,8 @@ jobs:
       matrix:
         build_config: [debug, release]
         compiler: [g++-11, clang++-12]
-    runs-on: ubuntu-latest
+        os: [ubuntu-latest]
+    runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
         with:
