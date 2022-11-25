@@ -54,6 +54,9 @@ add_library(hdk STATIC
 	src/hdk/profile.hpp
 )
 hdk_configure_common(TARGET hdk)
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+	target_compile_options(hdk PUBLIC -Wno-format-security)
+endif()
 target_include_directories(hdk PUBLIC "${PROJECT_SOURCE_DIR}/src")
 target_compile_definitions(hdk PRIVATE "-DHDK_VER=0x${PROJECT_VERSION_MAJOR}${PROJECT_VERSION_MINOR}${PROJECT_VERSION_PATCH}${PROJECT_VERSION_TWEAK}")
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
