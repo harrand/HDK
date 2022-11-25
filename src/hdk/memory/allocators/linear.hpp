@@ -17,7 +17,7 @@ namespace hdk
 	{
 	public:
 		linear_allocator(std::span<std::byte> arena);
-		linear_allocator(hdk::memblk arena);
+		linear_allocator(hdk::memblk arena = hdk::nullblk);
 
 		hdk::memblk allocate(std::size_t count);
 		void deallocate(hdk::memblk blk);
