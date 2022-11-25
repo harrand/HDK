@@ -13,14 +13,11 @@ namespace hdk::impl
 		HDK_PROFZONE("job_system_threadpool_lfq()", 0xFFAA0000);
 		for(std::size_t i = 0; i < std::thread::hardware_concurrency(); i++)
 		{
-			this->thread_pool.emplace_back
-			(
-				std::thread([this, i](){this->tmain(i);}),
-				i,
-				job_id_null
-			);
-		}
-	}
+			auto& worker = this->thread_pool.emplace_back();
+			worker.thread = std::thread([this, i](){this->tmain(i);});
+			worker.local_tid = i;
+			worker.current_job = job_id_null;
+		} }
 	
 	job_system_threadpool_lfq::~job_system_threadpool_lfq()
 	{
