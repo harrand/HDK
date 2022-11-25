@@ -10,3 +10,4 @@ jobs:
     with:
       target: hdktest
       preset_prefix: ci-
+      build_msvc: false
