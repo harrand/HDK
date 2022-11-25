@@ -8,6 +8,10 @@ on:
       preset_prefix:
         required: true
         type: string
+      build_msvc:
+        required: false
+        default: true
+        type: boolean
 
 jobs:
   hdk_task:
@@ -37,7 +41,8 @@ jobs:
         if: ${{matrix.compiler != 'msvc'}}
       - name: 'Configure HDK CMake Project (MSVC)'
         run: cmake --preset ${{inputs.preset_prefix}}${{matrix.build_config}} -G "Visual Studio 17 2022"
-        if: ${{matrix.compiler == 'msvc'}}
+        if: ${{matrix.compiler == 'msvc' && inputs.build_msvc}}
 
       - name: 'Build ${{inputs.target}}'
         run: cmake --build ./build/${{matrix.build_config}} --target ${{inputs.target}}
+        if: ${{matrix.compiler != 'msvc' || (matrix.compiler == 'msvc' && inputs.build_msvc)}}
