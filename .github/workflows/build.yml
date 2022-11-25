@@ -6,7 +6,7 @@ on:
 
 jobs:
   code_build:
-    uses: ./.github/workflows/hdk.yml@master
+    uses: ./.github/workflows/hdk.yml
     with:
       target: hdk
       preset_prefix: ci-

@@ -6,7 +6,7 @@ on:
 
 jobs:
   code_build:
-    uses: Harrand/HDK/.github/workflows/hdk.yml@master
+    uses: ./.github/workflows/hdk.yml
     with:
       target: hdktest
-      build_config: debug
+      build_config: ci-
