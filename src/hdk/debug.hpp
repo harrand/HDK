@@ -12,7 +12,7 @@ namespace hdk::detail
 	using source_loc = std::source_location;
 }
 #else
-#warning "std::source_location support not detected, using a stub instead. Source information in report/assert/error will be wrong."
+#pragma message("std::source_location support not detected, using a stub instead. Source information in report/assert/error will be wrong.")
 #include <cstdint>
 namespace hdk::detail
 {
