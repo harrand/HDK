@@ -16,6 +16,13 @@ jobs:
         build_config: [debug, release]
         compiler: [g++-11, clang++-12]
         os: [ubuntu-latest]
+        include:
+          - build_config: debug
+            compiler: msvc
+            os: windows-latest
+          - build_config: release
+            compiler: msvc
+            os: windows-latest
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
@@ -24,7 +31,13 @@ jobs:
       - name: 'Install G++-11'
         run: sudo apt install gcc-11 g++-11
         if: ${{matrix.compiler == 'g++-11'}}
-      - name: 'Configure HDK CMake Project'
+
+      - name: 'Configure HDK CMake Project (GCC/Clang)'
         run: cmake --preset ${{inputs.preset_prefix}}${{matrix.build_config}} -DCMAKE_CXX_COMPILER=${{matrix.compiler}}
+        if: ${{matrix.compiler != 'msvc'}}
+      - name: 'Configure HDK CMake Project (MSVC)'
+        run: cmake --preset ${{inputs.preset_prefix}}${{matrix.build_config}} -G "Visual Studio 17 2022"
+        if: ${{matrix.compiler == 'msvc'}}
+
       - name: 'Build ${{inputs.target}}'
         run: cmake --build ./build/${{matrix.build_config}} --target ${{inputs.target}}
