@@ -1,9 +1,31 @@
 #ifndef HDK_DEBUG_HPP
 #define HDK_DEBUG_HPP
-#include <source_location>
 #include <concepts>
 #include <string>
 #include <functional>
+
+#include <version>
+#ifdef __cpp_lib_source_location 
+#include <source_location>
+namespace hdk::detail
+{
+	using source_loc = std::source_location;
+}
+#else
+#warning "std::source_location support not detected, using a stub instead. Source information in report/assert/error will be wrong."
+#include <cstdint>
+namespace hdk::detail
+{
+	struct source_loc
+	{
+		static source_loc current(){return {};}
+		constexpr std::uint_least32_t line() const{return 0;}
+		constexpr std::uint_least32_t column() const{return 0;}
+		constexpr const char* file_name() const{return "<Unknown>";}
+		constexpr const char* function_name() const{return "<Unknown>";}
+	};
+}
+#endif
 
 #undef assert
 
@@ -15,9 +37,9 @@ namespace hdk
 		struct format_string
 		{
 			const char* str;
-			std::source_location loc;
+			source_loc loc;
 
-			constexpr format_string(const char* str, std::source_location loc = std::source_location::current()):
+			constexpr format_string(const char* str, source_loc loc = source_loc::current()):
 			str(str), loc(loc){}
 		};
 	}

@@ -6,7 +6,7 @@
 namespace hdk
 {
 	template<typename... Args>
-	void error_internal(const char* preamble, const char* fmt, const std::source_location& loc, Args&&... args)
+	void error_internal(const char* preamble, const char* fmt, const detail::source_loc& loc, Args&&... args)
 	{
 		std::fprintf(stderr, "%s", preamble);
 		std::fprintf(stderr, fmt, std::forward<Args>(args)...);
@@ -20,7 +20,7 @@ namespace hdk
 	}
 
 	template<typename... Args>
-	void report_internal(const char* preamble, const char* fmt, const std::source_location& loc, Args&&... args)
+	void report_internal(const char* preamble, const char* fmt, const detail::source_loc& loc, Args&&... args)
 	{
 		std::fprintf(stdout, "%s", preamble);
 		std::fprintf(stdout, fmt, std::forward<Args>(args)...);
