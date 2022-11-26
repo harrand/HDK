@@ -15,10 +15,14 @@
 	#define HDK_PROFZONE(name, colour) ZoneNamedNC(UNIQUE_NAME(tracy_profvar), name, colour, true)
 	#define HDK_THREAD(name) tracy::SetThreadName(name)
 	#define HDK_FRAME FrameMark
+	#define HDK_FRAME_BEGIN FrameMarkStart("Frame Loop")
+	#define HDK_FRAME_END FrameMarkEnd("Frame Loop")
 #else
 	#define HDK_PROFZONE(name, colour)
 	#define HDK_THREAD(name)
 	#define HDK_FRAME
+	#define HDK_FRAME_BEGIN
+	#define HDK_FRAME_END
 #endif
 
 #endif // HDK_PROFILE_HPP
