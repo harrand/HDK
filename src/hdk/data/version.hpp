@@ -43,7 +43,6 @@ namespace hdk
 		static version from_string(std::string_view sv)
 		{
 			version ret;
-			int tweak;
 			std::sscanf(sv.data(), "%u.%u.%u", &ret.major, &ret.minor, &ret.patch);
 			return ret;
 		}
@@ -58,6 +57,8 @@ namespace hdk
 				.type = static_cast<version_type>(ver_numeral & 0xF)
 			};
 		}
+
+		bool operator==(const version& rhs) const = default;
 	};
 
 	version get_version();
