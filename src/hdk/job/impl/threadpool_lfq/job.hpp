@@ -6,6 +6,7 @@
 #include <thread>
 #include <memory>
 #include <mutex>
+#include <condition_variable>
 
 namespace hdk::impl
 {
@@ -42,6 +43,8 @@ namespace hdk::impl
 		std::atomic<std::size_t> lifetime_count = 0;
 		std::vector<std::size_t> waiting_job_ids = {};
 		mutable std::mutex waiting_job_id_mutex;
+		mutable std::mutex wake_mutex;
+		mutable std::condition_variable wake_condition;
 	};
 
 	static_assert(job_system_type<job_system_threadpool_lfq>);

@@ -13,6 +13,12 @@ namespace hdk
 	 */
 	using job_system_t = hdk::impl::job_system_threadpool_lfq;
 
+	namespace detail
+	{
+		void job_system_init();
+		void job_system_term();
+	}
+
 	/**
 	 * @ingroup hdk_job
 	 * Retrieve the global job system.

@@ -3,6 +3,7 @@
 #include "hdk/profile.hpp"
 #include <chrono>
 #include <limits>
+#include <functional>
 
 namespace hdk::impl
 {
@@ -17,12 +18,17 @@ namespace hdk::impl
 			worker.thread = std::thread([this, i](){this->tmain(i);});
 			worker.local_tid = i;
 			worker.current_job = job_id_null;
-		} }
+		}
+	}
 	
 	job_system_threadpool_lfq::~job_system_threadpool_lfq()
 	{
 		HDK_PROFZONE("~job_system_threadpool_lfq()", 0xFFAA0000);
-		this->requires_exit = true;
+		{
+			std::unique_lock<std::mutex> lock(this->wake_mutex);
+			this->requires_exit = true;
+		}
+		this->wake_condition.notify_all();
 		for(worker_t& worker : this->thread_pool)
 		{
 			worker.thread.join();
@@ -43,6 +49,7 @@ namespace hdk::impl
 			this->waiting_job_ids.push_back(this->lifetime_count);
 		}
 		this->jobs.enqueue(jinfo);
+		this->wake_condition.notify_one();
 		return static_cast<hanval>(this->lifetime_count++);
 	}
 
@@ -88,13 +95,17 @@ namespace hdk::impl
 		while(!this->requires_exit.load())
 		{
 			job_info_t job;
-			bool found = this->jobs.try_dequeue(job);
-			if(!found)
 			{
-				this->wait_a_bit();
-				continue;
+				std::unique_lock<std::mutex> lock(this->wake_mutex);
+				while(!this->requires_exit.load() && !this->jobs.try_dequeue(job))
+				{
+					this->wake_condition.wait(lock);
+				}
 			}
-
+			if(this->requires_exit.load())
+			{
+				break;
+			}
 			worker.current_job = job.id;
 			HDK_PROFZONE("job thread - do job", 0xFFAAAA00);
 			{

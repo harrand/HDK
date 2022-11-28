@@ -1,5 +1,8 @@
 #include "hdk/hdk.hpp"
 #include "hdk/debug.hpp"
+#include "hdk/job/job.hpp"
+
+#undef assert
 
 namespace hdk
 {
@@ -16,12 +19,14 @@ namespace hdk
 	void initialise()
 	{
 		hdk::assert(!detail::init.initialised, "initialise() already initialised");
+		hdk::detail::job_system_init();
 		detail::init.initialised = true;
 	}
 
 	void terminate()
 	{
 		hdk::assert(detail::init.initialised, "terminate() called but we are not initialised");
+		hdk::detail::job_system_term();
 		detail::init.initialised = false;
 	}
 
