@@ -4,6 +4,7 @@
 // TODO: Configurable
 #include "hdk/job/impl/stdasync/job.hpp"
 #include "hdk/job/impl/threadpool_lfq/job.hpp"
+#undef assert
 
 namespace hdk
 {
