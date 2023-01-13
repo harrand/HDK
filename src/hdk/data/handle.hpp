@@ -18,7 +18,7 @@ namespace hdk
 		handle(hanval v):
 		value(v){}
 
-		handle([[maybe_unused]] nullhand_t nh):
+		handle([[maybe_unused]] nullhand_t nh = {}):
 		value(static_cast<hanval>(std::numeric_limits<std::underlying_type_t<hanval>>::max())){}
 
 		explicit operator hanval() const
